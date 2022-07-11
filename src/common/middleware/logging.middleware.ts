@@ -11,7 +11,7 @@ export class LoggingMiddleware implements NestMiddleware {
     // we hook to the express finish event
     res.on('finish', () => console.timeEnd('Request-response time'));
 
-    // we could long lasting methods to the database and keep track of how long 
+    // we could long lasting methods to the database and keep track of how long
     // every API takes to complete.
     next();
   }
