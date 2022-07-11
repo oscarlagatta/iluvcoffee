@@ -1,3 +1,4 @@
+import { ParseIntPipe } from './../common/pipes/parse-int.pipe';
 import {
   Body,
   Controller,
@@ -27,8 +28,7 @@ export class CoffeesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    console.log(typeof id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.coffeesService.findOne('' + id);
   }
 
