@@ -14,19 +14,29 @@ import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { ApiForbiddenResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+// import { Protocol } from 'src/common/decorators/protocol.decorator';
 
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
 
+  /**
+   * Setting different API Responses for Swagger UI
+   * (long version)
+   */
+  // @ApiResponse({ status: 403, description: 'Forbidden.' })
+
+  /* short-hand versions are available as well */
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
   findAll(
-    @Protocol('https') protocol: string,
+    // @Protocol('https') protocol: string,
     @Query() paginationQuery: PaginationQueryDto,
   ) {
-    console.log(protocol);
+    // console.log(protocol);
     //  await new Promise((resolve) => setTimeout(resolve, 5000));
     // const { limit, offset } = paginationQuery;
     return this.coffeesService.findAll(paginationQuery);
