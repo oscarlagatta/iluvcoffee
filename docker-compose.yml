@@ -2,9 +2,15 @@
 
  services:
   db:
-    image: postgres
+    image: mongo
     restart: always
     ports:
-      - "5432:5432"
+      - 27017:27017
     environment:
-      POSTGRES_USER: postgres
+      - MONGODB_DATABASE= iluvcoffee
+    # image: postgres
+    # restart: always
+    # ports:
+    #   - "5432:5432"
+    # environment:
+    #   POSTGRES_USER: postgres
